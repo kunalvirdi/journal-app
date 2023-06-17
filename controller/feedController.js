@@ -76,9 +76,13 @@ module.exports.deleteJournals = (req, res) => {
                 if (attachment !== " ") {
                     await deleteFileFromS3(attachment.split('/')[1])
                 }
-                await deleteFileFromS3();
-                await Journal.deleteJournal(req.body.journal_id);
-                res.status(200).json(`Deleted journal with ${req.body.journal_id} successfully`);
+                try{
+                    await Journal.deleteJournal(req.body.journal_id);
+                    res.status(200).json(`Deleted journal with ${req.body.journal_id} successfully`);
+                }catch(err){
+                    res.json(err)
+                }
+
             }
         }
     })
