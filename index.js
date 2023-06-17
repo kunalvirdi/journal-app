@@ -24,7 +24,8 @@ app.get('/',(req,res)=>{
         getFeeds:"/feed",
         createJournal:"/postJournal",
         updateJournal:"/updateJournal",
-        deleteJournal:"/deleteJournal"
+        deleteJournal:"/deleteJournal",
+        documentationLink:"https://kunalvirdi.stoplight.io/docs/journals-api/branches/main/ytt54mjnpx2mq-journals-app-api"
     })
 })
 
