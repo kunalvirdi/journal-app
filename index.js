@@ -4,10 +4,13 @@ const bodyParser=require('body-parser')
 const authRoute=require('./routes/authentication')
 const feedRoute=require('./routes/feedRoutes')
 const multer=require('multer')
-const path=require('path')
 require('dotenv').config()
+const cors=require('cors')
+
 const port = process.env.PORT || 8000
+app.use(cors())
 app.use(bodyParser.json())
+
 // Setting up multer for getting and storing files on AWS S3
 const fileStorage=multer.memoryStorage();
 app.use(multer({storage: fileStorage}).single('attachment'));
