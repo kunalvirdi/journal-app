@@ -5,8 +5,8 @@ const authRoute=require('./routes/authentication')
 const feedRoute=require('./routes/feedRoutes')
 const multer=require('multer')
 const path=require('path')
-
-
+require('dotenv').config()
+const port = process.env.PORT || 8000
 app.use(bodyParser.json())
 // Setting up multer for getting and storing files on AWS S3
 const fileStorage=multer.memoryStorage();
@@ -27,6 +27,4 @@ app.get('/',(req,res)=>{
 
 app.use(authRoute)
 app.use('/feed',feedRoute)
-app.listen(8000,()=>{
-    console.log("Listening on Port: 8000")
-})
+app.listen(port)
