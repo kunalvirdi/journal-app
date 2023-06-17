@@ -18,10 +18,18 @@ module.exports.register = async (req, res) => {
     await user.save();
     if (req.body.role === "teacher") {
         const teacher = new Teacher(user_id, username, email);
-        await teacher.save();
+        try{
+            await teacher.save();
+        }catch(err){
+            res.json(err)
+        }
     } else {
-        const student = new Student(user_id, username, email);
-        await student.save();
+        try{
+            const student = new Student(user_id, username, email);
+            await student.save();
+        }catch(err){
+            res.json(err)
+        }
     }
     res.status(201).json({message: `Registered ${username} as ${role}`})
 }
